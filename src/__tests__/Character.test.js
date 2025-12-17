@@ -33,3 +33,38 @@ test('Cannot creat type not from the list', () => {
     const testing = new TestClass('name');
   }).toThrow();
 });
+
+test('Correct level up', () => {
+  const swordman = new Swordman('name');
+  swordman.health = 99;
+  swordman.levelUp();
+  expect(swordman.level).toBe(2);
+  expect(swordman.health).toBe(100);
+  expect(swordman.attack).toBeCloseTo(30 * 1.2);
+  expect(swordman.defence).toBeCloseTo(20 * 1.2);
+});
+
+test('Correct points', () => {
+  const swordman = new Swordman('name');
+  swordman.damage(2);
+  expect(swordman.health).toBeCloseTo(98.4);
+  swordman.health = 100;
+});
+
+test('Cannot level up when no health', () => {
+  expect(() => {
+    const swordman = new Swordman('name');
+    swordman.health = 0;
+    swordman.levelUp();
+    swordman.health = 100;
+  }).toThrow('Level up is possible only if there is health');
+});
+
+test('Cannot damage', () => {
+  expect(() => {
+    const swordman = new Swordman('name');
+    swordman.health = 0;
+    swordman.damage(1);
+    swordman.health = 100;
+  }).toThrow('Cannot be damaged');
+});
