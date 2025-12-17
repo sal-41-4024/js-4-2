@@ -7,4 +7,4 @@ jobs:
       steps:
         - uses: actions/checkout@v4
         - name: eslint and jest tests
-        - run: npm test
+          run: npm test
