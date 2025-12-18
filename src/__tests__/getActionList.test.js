@@ -41,7 +41,7 @@ test('Correct action list', () => {
   );
 });
 
-test('Cannot find the property', () => {
+test('No property', () => {
   const obj = {
     name: 'Лучник',
     type: 'Bowman',
@@ -51,10 +51,10 @@ test('Cannot find the property', () => {
     defence: 10,
   };
   const defaultDescription = 'Описание недоступно';
-  expect(() => getActionList(obj, defaultDescription)).toThrow('Cannot find the property');
+  expect(getActionList(obj, defaultDescription)).toEqual([]);
 });
 
-test('The property is not an array', () => {
+test('Different format', () => {
   const obj = {
     name: 'Лучник',
     type: 'Bowman',
@@ -65,5 +65,5 @@ test('The property is not an array', () => {
     special: 'Description',
   };
   const defaultDescription = 'Описание недоступно';
-  expect(() => getActionList(obj, defaultDescription)).toThrow('The property is not an array');
+  expect(() => getActionList(obj, defaultDescription)).toThrow('Not a list');
 });
